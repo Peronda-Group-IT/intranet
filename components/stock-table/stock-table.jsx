@@ -8,6 +8,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { cmsFetch } from "@/lib/utils";
+import StockTableRow from "./stock-table-row";
 
 export default async function StockTable({ id, search, page, pageSize, totalPages }) {
   const items = search ? await cmsFetch(`/stock_intranet/search/${search}?grupo_cliente=${id}&page=${page}&pageSize=${pageSize}`) : await cmsFetch(`/stock_intranet/filter?grupo_cliente=${id}&page=${page}&pageSize=${pageSize}`);
@@ -34,23 +35,7 @@ export default async function StockTable({ id, search, page, pageSize, totalPage
           </TableHeader>
           <TableBody>
             {items.map((item) => (
-              <TableRow
-                key={item.empresa + item.codigo_articulo}
-                className={"hover:bg-muted cursor-pointer"}
-              >
-                <TableCell>{item.codigo_articulo}</TableCell>
-                <TableCell>{item.nombre_serie}</TableCell>
-                <TableCell>{item.nombre_familia}</TableCell>
-                <TableCell>{item.nombre_formato}</TableCell>
-                <TableCell>{item.nombre_articulo}</TableCell>
-                <TableCell>{item.grupo_tarifa}</TableCell>
-                <TableCell>{item.nombre_calidad}</TableCell>
-                <TableCell>{item.tono}</TableCell>
-                <TableCell>{item.calibre}</TableCell>
-                <TableCell>{item.clase_palet}</TableCell>
-                <TableCell>{item.existencias}</TableCell>
-                <TableCell>{item.nombre_unidad}</TableCell>
-              </TableRow>
+              <StockTableRow key={`${item.empresa}-${item.grupo_cliente}-${item.codigo_articulo}`} item={item} />
             ))}
           </TableBody>
         </Table>
