@@ -8,9 +8,13 @@ import {
 } from "@/components/ui/table";
 import { cmsFetch } from "@/lib/utils";
 import StockTableRow from "./stock-table-row";
+import { loadTranslations } from "@/lib/server-utils";
+
 
 export default async function StockTable({ id, search, page, pageSize, totalPages }) {
   const items = search ? await cmsFetch(`/stock_intranet/search/${search}?grupo_cliente=${id}&page=${page}&pageSize=${pageSize}`) : await cmsFetch(`/stock_intranet/filter?grupo_cliente=${id}&page=${page}&pageSize=${pageSize}`);
+
+  const translations = await loadTranslations()
 
   return (
     <>
@@ -18,18 +22,18 @@ export default async function StockTable({ id, search, page, pageSize, totalPage
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead>Artículo</TableHead>
-              <TableHead>Colección</TableHead>
-              <TableHead>Familia</TableHead>
-              <TableHead>Formato</TableHead>
-              <TableHead>Descripción</TableHead>
-              <TableHead>Grupo Tarifa</TableHead>
-              <TableHead>Calidad</TableHead>
-              <TableHead>Tono</TableHead>
-              <TableHead>Calibre</TableHead>
-              <TableHead>Tipo Palet</TableHead>
-              <TableHead>Disponible</TableHead>
-              <TableHead>Unidad</TableHead>
+              <TableHead>{translations["article-header"]}</TableHead>
+              <TableHead>{translations["collection-header"]}</TableHead>
+              <TableHead>{translations["family-header"]}</TableHead>
+              <TableHead>{translations["format-header"]}</TableHead>
+              <TableHead>{translations["description-header"]}</TableHead>
+              <TableHead>{translations["rate-group-header"]}</TableHead>
+              <TableHead>{translations["quality-header"]}</TableHead>
+              <TableHead>{translations["tone-header"]}</TableHead>
+              <TableHead>{translations["caliber-header"]}</TableHead>
+              <TableHead>{translations["pallet-type-header"]}</TableHead>
+              <TableHead>{translations["available-header"]}</TableHead>
+              <TableHead>{translations["unit-header"]}</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>

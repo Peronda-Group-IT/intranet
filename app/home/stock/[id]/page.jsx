@@ -6,8 +6,6 @@ export default async function StockPage({ params, searchParams }) {
   const { id } = await params;
   const { page, search } = await searchParams;
 
-  
-
   const allItems = search ? await cmsFetch(`/stock_intranet/search/${search}?grupo_cliente=${id}&count=true`) : await cmsFetch(`/stock_intranet/filter?grupo_cliente=${id}&count=true`);
 
   const pageSize = 20; // Define the number of items per page
