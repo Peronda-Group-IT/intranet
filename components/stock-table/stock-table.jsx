@@ -2,7 +2,6 @@ import TablePagination from "@/components/table-pagination";
 import {
   Table,
   TableBody,
-  TableCell,
   TableHead,
   TableHeader,
   TableRow,
