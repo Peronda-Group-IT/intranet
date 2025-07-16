@@ -5,6 +5,8 @@ import { Search } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
+import { Loader } from "lucide-react"
+
 
 
 export function SearchBar({ placeholder = 'Buscar...', buttonSearchText = 'Buscar' }) {
@@ -13,8 +15,10 @@ export function SearchBar({ placeholder = 'Buscar...', buttonSearchText = 'Busca
   const { replace } = useRouter();
   
   const [searchTerm, setSearchTerm] = useState(searchParams.get('search') || '')
+  const [loading, setLoading] = useState(false);
 
   const handleSearch = () => {
+    setLoading(true);
     const params = new URLSearchParams(searchParams)  
     if (searchTerm) {
         params.set('search', searchTerm);
@@ -23,6 +27,8 @@ export function SearchBar({ placeholder = 'Buscar...', buttonSearchText = 'Busca
     }
     params.delete('page');
     replace(`${pathname}?${params.toString()}`);
+    setLoading(false);
+    
   };
 
   return (
@@ -39,10 +45,19 @@ export function SearchBar({ placeholder = 'Buscar...', buttonSearchText = 'Busca
         />
       </div>
       <Button type="submit" className={'cursor-pointer'}>
-        <Search className="md:mr-2" />
-        <span className="hidden md:block">
-          {buttonSearchText}
-        </span>
+
+        {loading ? (
+          <Loader className="w-4 h-4 animate-spin" />
+        ) : (
+          <>
+          <Search className="md:mr-2" />
+          <span className="hidden md:block">
+            {buttonSearchText}
+          </span>
+          </>
+        )}
+        
+
       </Button>
       
     </form>
