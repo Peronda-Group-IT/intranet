@@ -7,8 +7,9 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { loadTranslations } from "@/lib/server-utils";
 
-const HomePage = () => {
+const HomePage = async () => {
 
   const stockCategories = [
     { name: "Peronda", route: "/home/stock/99" },
@@ -17,10 +18,12 @@ const HomePage = () => {
     { name: "Harmony", route: "/home/stock/94" },
   ];
 
+  const translations = await loadTranslations();
+
   return (
     <div className="container mx-auto p-4 space-y-8">
       <section id="stock-categories">
-        <h2 className="text-3xl font-bold text-center mb-8">Stock Categories</h2>
+        <h2 className="text-3xl font-bold text-center mb-8">{translations['stock-categories']}</h2>
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           {stockCategories.map((category) => (
               <Card
@@ -29,11 +32,11 @@ const HomePage = () => {
               >
                 <CardHeader>
                   <CardTitle>{category.name}</CardTitle>
-                  <CardDescription>View stock for {category.name}</CardDescription>
+                  <CardDescription>{translations['view-stock-for']} {category.name}</CardDescription>
                 </CardHeader>
                 <CardContent>
                   <Link href={category.route} >
-                    <Button variant="outline" className={"cursor-pointer"}>Go to Stock</Button>
+                    <Button variant="outline" className={"cursor-pointer w-full"}>{translations["go-to-stock"]}</Button>
                   </Link>
                 </CardContent>
               </Card>

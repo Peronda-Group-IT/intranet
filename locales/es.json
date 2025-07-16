@@ -34,5 +34,8 @@
     "settings_company_description": "Seleccione la empresa con la que va a trabajar",
     "setting_company_label": "Empresa",
 
-    "stock-tittle": "Stock disponible"
+    "stock-tittle": "Stock disponible",
+    "view-stock-for": "Ver stock de",
+    "stock-categories": "Categorias de stock",
+    "go-to-stock": "Ver stock"
 }
