@@ -9,7 +9,7 @@ import { Loader } from "lucide-react"
 
 
 
-export function SearchBar({ placeholder = 'Buscar...', buttonSearchText = 'Buscar' }) {
+export function SearchBar({ placeholder = '', buttonSearchText = 'Buscar' }) {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();

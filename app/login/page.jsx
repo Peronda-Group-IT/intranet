@@ -41,7 +41,7 @@ export default function LoginForm() {
               <input
                 name="username"
                 type="text"
-                placeholder="peronda"
+                placeholder={t('login_username_placeholder')}
                 className="w-full border border-gray-300 p-2 rounded mt-1"
               />
             </div>
@@ -51,7 +51,7 @@ export default function LoginForm() {
                 <input
                   name="password"
                   type={viewPassword ? 'text' : 'password'}
-                  placeholder="••••••••"
+                  placeholder={t('login_password_placeholder')}
                   className="w-full border border-gray-300 p-2 rounded mt-1"
                 />
                 <div className='absolute right-3 top-3 cursor-pointer z-10' onClick={() => setViewPassword(!viewPassword)}>
@@ -65,8 +65,8 @@ export default function LoginForm() {
             </div>
 
             <div className="text-right text-sm mt-4 w-full flex justify-center">
-              <a 
-                href="mailto:serviciosit@perondagroup.es?subject=He%20olvidado%20mi%20contraseña%20inicio%20sesión%20en%20web" 
+              <a
+                href={`mailto:serviciosit@perondagroup.es?subject=${t('login_forgot_mail_subject')}`}
                 className="text-blue-500 hover:underline"
               >
                 {t('login_forgot')}
@@ -83,9 +83,9 @@ export default function LoginForm() {
           </form>
 
           <p className="text-center text-sm mt-4">
-            {t('login_help_mail_subject')}{' '}
-            <a 
-              href="mailto:serviciosit@perondagroup.es?subject=Problema%20de%20inicio%20de%20sesión%20en%20web" 
+            {t('login_help_text')}{' '}
+            <a
+              href={`mailto:serviciosit@perondagroup.es?subject=${t('login_help_mail_subject')}`}
               className="text-blue-500 hover:underline"
             >
               {t('login_help_link')}

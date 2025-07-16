@@ -32,5 +32,7 @@
     "settings_language_english": "English",
     "settings_company_tittle": "Company settings",
     "settings_company_description": "Select the company you will be working with",
-    "setting_company_label": "Company"
+    "setting_company_label": "Company",
+
+    "stock-tittle": "Avaliable stock"
 }
