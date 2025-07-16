@@ -17,7 +17,7 @@ export default async function StockDetailPage({ params }) {
   }
 
   return (
-    <div className="p-4 md:p-8 space-y-4">
+    <div className="space-y-4 max-w-5xl mx-auto">
       <h1 className="text-2xl font-bold mb-4">{item.nombre_articulo}</h1>
 
       <Card>
