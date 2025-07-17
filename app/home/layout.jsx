@@ -8,7 +8,6 @@ export default async function Layout({ children }) {
 
   const userLang = await getUserLangCookie();
 
-
   return (
     <SidebarProvider>
         <TranslationProvider lang={userLang}>

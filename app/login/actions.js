@@ -1,47 +1,56 @@
-'use server'
+"use server";
 
 import { cookies } from "next/headers";
-import { createSession, createUserLangCookie, verifySession } from "../../lib/session";
+import {
+  createSession,
+  createUserLangCookie,
+  verifySession,
+} from "../../lib/session";
 import { redirect } from "next/navigation";
+import { postMetrics } from "@/lib/metrics-api";
 
 export async function login(state, formData) {
+  const username = formData.get("username");
+  const password = formData.get("password");
+  const fingerprint = formData.get("fingerprint");
 
-    const username = formData.get("username");
-    const password = formData.get("password");
-    const fingerprint = formData.get("fingerprint");
+  if (!username || !password) {
+    return {
+      error: "Debe introducir usuario y contraseña",
+    };
+  } else {
+    // Fetch user data
+    const { user, error } = await createSession(
+      username,
+      password,
+      fingerprint
+    );
 
-    if (!username || !password) {
-        return {
-            error: 'Debe introducir usuario y contraseña'
-        }
-    } else {
-      // Fetch user data
-      const {user, error} = await createSession(username, password, fingerprint)
+    await createUserLangCookie(username);
 
-      await createUserLangCookie(username);
+    //console.log("AUTH TOKEN IN LOGIN", authToken)
 
-      //console.log("AUTH TOKEN IN LOGIN", authToken)
-
-      if (error) return {
-          error: error.message
+    if (error)
+      return {
+        error: error.message,
       };
 
-      //const payload = await decrypt(authToken)
+    //const payload = await decrypt(authToken)
 
-      //console.log("SESSION IN LOGIN", payload)
+    //console.log("SESSION IN LOGIN", payload)
 
-      //const {success, role, message} = await fetchUserRole(username);
+    //const {success, role, message} = await fetchUserRole(username);
 
-      //console.log("ROLE", role)
+    //console.log("ROLE", role)
 
-      //console.log("PAYLOAD TO ADD", payloadToAdd)
-  
-      //const sessionCreated = await updateSession(payloadToAdd);
+    //console.log("PAYLOAD TO ADD", payloadToAdd)
 
-      //console.log('SESSION IS CREATED', sessionCreated)
-      
-      if (user) redirect('/home');
-    }
+    //const sessionCreated = await updateSession(payloadToAdd);
+
+    //console.log('SESSION IS CREATED', sessionCreated)
+
+    if (user) redirect("/home");
+  }
 }
 
 export async function logout() {
@@ -49,8 +58,12 @@ export async function logout() {
   (await cookies()).set("session", "", { expires: new Date(0) });
 }
 
-export async function verifyFingerprint (fingerprint, pathname) {
-  const result = await verifySession(fingerprint, pathname)
+export async function verifyFingerprint(fingerprint, pathname) {
+  const result = await verifySession(fingerprint, pathname);
+  postMetrics({
+    service: "intranet",
+    route: pathname,
+  });
   //console.log("RESULT IN VERIFY FINGERPRINT", result)
   return result;
 }
@@ -59,9 +72,9 @@ export async function tryVerifyInyectedCookie(fingerprint, pathname) {
   const cookieStore = await cookies();
   const authcookie = cookieStore.get("auth")?.value;
   if (authcookie) {
-    const result = await verifySession(fingerprint, pathname)
-    if (result?.success){
-      redirect('/');
+    const result = await verifySession(fingerprint, pathname);
+    if (result?.success) {
+      redirect("/");
     }
   }
 }
