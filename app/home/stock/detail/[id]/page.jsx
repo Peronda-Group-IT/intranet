@@ -65,7 +65,7 @@ export default async function StockDetailPage({ params }) {
   }
 
   return (
-    <div className="p-4 sm:p-6 lg:p-8 space-y-6 bg-gray-50/50">
+    <div className="space-y-6 bg-gray-50/50 max-w-6xl mx-auto">
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
           <h1 className="text-2xl md:text-3xl font-bold text-gray-800 mt-2">
@@ -84,7 +84,7 @@ export default async function StockDetailPage({ params }) {
         <Card className="shadow-sm">
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-lg text-gray-700">
-              <Info className="w-5 h-5" />
+              <Info className="w-5 h-5 text-blue-500" />
               Información General
             </CardTitle>
           </CardHeader>
@@ -110,7 +110,7 @@ export default async function StockDetailPage({ params }) {
                 <Badge variant="outline">{item.grupo_tarifa}</Badge>
               </div>
             </div>
-            <div className="flex justify-around pt-4">
+            <div className="flex justify-around md:h-4/6 items-center pt-4 border-t">
               <div className="text-center">
                 <div className="w-16 h-16 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-xl font-bold mx-auto">
                   {item.nombre_calidad}
@@ -141,7 +141,7 @@ export default async function StockDetailPage({ params }) {
         <Card className="shadow-sm">
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-lg text-gray-700">
-              <Warehouse className="w-5 h-5" />
+              <Package className="w-5 h-5 text-green-600" />
               Detalles del Stock
             </CardTitle>
           </CardHeader>
@@ -176,14 +176,14 @@ export default async function StockDetailPage({ params }) {
         <Card className="shadow-sm">
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-lg text-gray-700">
-              <Weight className="w-5 h-5" />
+              <Weight className="w-5 h-5 text-orange-500" />
               Información del Peso
             </CardTitle>
           </CardHeader>
-          <CardContent className="grid grid-cols-2 gap-6 text-center pt-6">
+          <CardContent className="grid grid-cols-2 gap-6 text-center h-full items-center">
             <div>
-              <div className="w-20 h-20 bg-orange-100 text-orange-500 rounded-full flex items-center justify-center mx-auto">
-                <Box className="w-10 h-10" />
+              <div className="w-20 h-20 md:w-30 md:h-30 bg-orange-100 text-orange-500 rounded-full flex items-center justify-center mx-auto">
+                <Box className="w-10 h-10 md:w-18 md:h-18" />
               </div>
               <p className="text-2xl font-bold text-gray-800 mt-4">
                 {item.peso_pieza} kg
@@ -191,8 +191,8 @@ export default async function StockDetailPage({ params }) {
               <p className="text-sm text-gray-500">Peso/Pieza</p>
             </div>
             <div>
-              <div className="w-20 h-20 bg-orange-100 text-orange-500 rounded-full flex items-center justify-center mx-auto">
-                <Package className="w-10 h-10" />
+              <div className="w-20 h-20 md:w-30 md:h-30 bg-orange-100 text-orange-500 rounded-full flex items-center justify-center mx-auto">
+                <Package className="w-10 h-10 md:w-18 md:h-18" />
               </div>
               <p className="text-2xl font-bold text-gray-800 mt-4">
                 {item.peso_caja} kg
@@ -206,7 +206,7 @@ export default async function StockDetailPage({ params }) {
         <Card className="shadow-sm">
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-lg text-gray-700">
-              <Truck className="w-5 h-5" />
+              <Truck className="w-5 h-5 text-indigo-600" />
               Información del Palet
             </CardTitle>
           </CardHeader>
@@ -230,21 +230,26 @@ export default async function StockDetailPage({ params }) {
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div className="bg-indigo-50 rounded-lg p-4 text-center">
-                <Archive className="w-8 h-8 text-indigo-400 mx-auto mb-2" />
+                <div className="mx-auto mb-2 w-fit bg-indigo-100 p-2 rounded-full">
+                  <Archive className="w-8 h-8 text-indigo-600" />
+                </div>
                 <p className="text-2xl font-bold text-indigo-600">
                   {item.cajas_palet}
                 </p>
                 <p className="text-sm text-gray-500">Cajas/Palet</p>
               </div>
               <div className="bg-indigo-50 rounded-lg p-4 text-center">
-                <Layers className="w-8 h-8 text-indigo-400 mx-auto mb-2" />
+                <div className="mx-auto mb-2 w-fit bg-indigo-100 p-2 rounded-full">
+                  <Layers className="w-8 h-8 text-indigo-600" />
+                </div>
+              
                 <p className="text-2xl font-bold text-indigo-600">
                   {item.planos_palet}
                 </p>
                 <p className="text-sm text-gray-500">Niveles/Palet</p>
               </div>
             </div>
-            <div className="grid grid-cols-2 gap-x-6 text-sm pt-4">
+            <div className="grid grid-cols-2 gap-x-6 text-sm">
               <div>
                 <p className="text-gray-500">Cajas/Nivel</p>
                 <p className="font-medium text-gray-800 text-lg">
