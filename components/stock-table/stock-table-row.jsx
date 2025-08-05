@@ -27,6 +27,7 @@ export default function StockTableRow({ item }) {
       <TableCell><Badge variant="secondary" className={'bg-purple-200 text-purple-800'}>{item.tono}</Badge></TableCell>
       <TableCell><Badge variant="secondary" className={'bg-green-200 text-green-800'}>{item.calibre}</Badge></TableCell>
       <TableCell><Badge variant="outline">{item.clase_palet}</Badge></TableCell>
+      <TableCell><Badge variant="outline">{item.nombre_pallet}</Badge></TableCell>
       <TableCell><StockStatus stock={item.existencias} /></TableCell>
       <TableCell>{item.nombre_unidad}</TableCell>
     </TableRow>

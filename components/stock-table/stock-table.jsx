@@ -32,6 +32,7 @@ export default async function StockTable({ id, search, page, pageSize, totalPage
               <TableHead>{translations["tone-header"]}</TableHead>
               <TableHead>{translations["caliber-header"]}</TableHead>
               <TableHead>{translations["pallet-type-header"]}</TableHead>
+              <TableHead>{translations["pallet-name-header"]}</TableHead>
               <TableHead>{translations["available-header"]}</TableHead>
               <TableHead>{translations["unit-header"]}</TableHead>
             </TableRow>
