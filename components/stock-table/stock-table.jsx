@@ -21,7 +21,7 @@ export default async function StockTable({ id, search, page, pageSize, totalPage
       <section className={"bg-background rounded-md border"}>
         <Table>
           <TableHeader>
-            <TableRow>
+            <TableRow className={"bg-muted text-muted-foreground font-semibold hover:bg-muted"}>
               <TableHead>{translations["article-header"]}</TableHead>
               <TableHead>{translations["collection-header"]}</TableHead>
               <TableHead>{translations["family-header"]}</TableHead>
