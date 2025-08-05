@@ -79,5 +79,10 @@
     "pallet-weight-label": "Pallet Weight",
     "no-item-found": "No item found for ID",
 
-    "back-button-text": "Back to Stock"
+    "back-button-text": "Back to Stock",
+
+    "stock-status-high": "High",
+    "stock-status-medium": "Medium",
+    "stock-status-low": "Low",
+    "available-meters": "Available meters"
 }

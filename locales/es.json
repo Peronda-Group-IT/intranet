@@ -79,5 +79,10 @@
     "pallet-weight-label": "Peso del Palet",
     "no-item-found": "No se encontró ningún artículo para el ID",
 
-    "back-button-text": "Volver a Stock"
+    "back-button-text": "Volver a Stock",
+
+    "stock-status-high": "Alto",
+    "stock-status-medium": "Medio",
+    "stock-status-low": "Bajo",
+    "available-meters": "Metros disponibles"
 }
