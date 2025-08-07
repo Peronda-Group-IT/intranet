@@ -63,7 +63,7 @@ USER nextjs
 EXPOSE 3003
 
 # Set the default port environment variable
-ENV PORT=3003
+ENV PORT=3004
 # Set the default hostname environment variable (listen on all interfaces)
 ENV HOSTNAME=0.0.0.0
 
