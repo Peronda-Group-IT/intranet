@@ -22,7 +22,7 @@ import {
 
 const StockStatus = ({ stock, translations }) => {
   const stockValue = parseFloat(stock);
-  if (stockValue > 100) {
+  if (stockValue > 500) {
     return (
       <Badge variant="outline" className="bg-green-100 text-green-800 border-green-200">
         <div className="h-2 w-2 bg-green-500 rounded-full mr-2"></div>
