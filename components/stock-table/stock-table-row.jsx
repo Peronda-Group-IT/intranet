@@ -4,8 +4,6 @@ import { useRouter } from "next/navigation";
 import { TableCell, TableRow } from "../ui/table";
 import { Badge } from "../ui/badge";
 import StockStatus from "./stock-status";
-import { Button } from "../ui/button";
-import { ChevronRight } from "lucide-react";
 
 export default function StockTableRow({ item }) {
 

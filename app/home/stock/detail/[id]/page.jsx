@@ -29,7 +29,7 @@ const StockStatus = ({ stock, translations }) => {
         {translations["stock-status-high"]}
       </Badge>
     );
-  } else if (stockValue > 0) {
+  } else if (stockValue >= 100 && stockValue <= 500) {
     return (
       <Badge variant="outline" className="bg-yellow-100 text-yellow-800 border-yellow-200">
         <div className="h-2 w-2 bg-yellow-500 rounded-full mr-2"></div>
