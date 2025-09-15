@@ -1,6 +1,6 @@
 "use client";
 
-import { Home, PanelLeftClose, PanelLeftOpen, Settings } from "lucide-react";
+import { Home, Settings } from "lucide-react";
 
 import {
   Sidebar,
@@ -23,6 +23,9 @@ import React from "react";
 import { usePathname } from "next/navigation";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { useT } from "@/contexts/TranslationContext";
+import { Button } from "./ui/button";
+import { ChevronLeftIcon } from "lucide-react";
+import { ChevronRightIcon } from "lucide-react";
 
 const URL = process.env.NEXT_PUBLIC_URL;
 
@@ -65,13 +68,13 @@ export function AppSidebar() {
         <SidebarMenuItem className={`${isOpen ? "block" : "hidden"}`}>
           <Image src={`${URL}/rhino.png`} height={35} width={35} alt="CRM" />
         </SidebarMenuItem>
-        <div className="ml-auto cursor-pointer" onClick={toggleSidebar}>
+        <Button size={"icon"} className={`${isOpen ? "" : "mx-auto"} cursor-pointer size-8`} variant={"ghost"} onClick={toggleSidebar}>
           {isOpen ? (
-            <PanelLeftClose strokeWidth={1.25} />
+            <ChevronLeftIcon />
           ) : (
-            <PanelLeftOpen strokeWidth={1.25} />
+            <ChevronRightIcon />
           )}
-        </div>
+        </Button>
       </SidebarHeader>
       <Separator className={"mt-2"} />
       <SidebarContent>

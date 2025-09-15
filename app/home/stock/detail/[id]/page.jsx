@@ -52,9 +52,11 @@ export default async function StockDetailPage({ params }) {
 
   const [empresa, grupo_cliente, codigo_producto] = id.split("-") ?? [];
 
-  const item = await cmsFetch(
+  const newItem = await cmsFetch(
     `/stock_intranet/${empresa}/${grupo_cliente}/${codigo_producto}`
   );
+
+  const item = newItem[0];
 
   if (!item) {
     return (
@@ -96,7 +98,7 @@ export default async function StockDetailPage({ params }) {
               </div>
               <div>
                 <p className="text-gray-500">{translations["family-label"]}</p>
-                <Badge variant="secondary">{item.nombre_familia}</Badge>
+                {item.nombre_familia && <Badge variant="secondary">{item.nombre_familia}</Badge>}
               </div>
               <div>
                 <p className="text-gray-500">{translations["format-label"]}</p>
@@ -107,7 +109,7 @@ export default async function StockDetailPage({ params }) {
               </div>
               <div>
                 <p className="text-gray-500">{translations["tariff-group-label"]}</p>
-                <Badge variant="outline">{item.grupo_tarifa}</Badge>
+                {item.grupo_tarifa && <Badge variant="outline">{item.grupo_tarifa}</Badge>}
               </div>
             </div>
             <div className="flex justify-around md:h-4/6 items-center pt-4 border-t">
@@ -218,7 +220,7 @@ export default async function StockDetailPage({ params }) {
               </div>
               <div>
                 <p className="text-gray-500">{translations["pallet-class-label"]}</p>
-                <Badge variant="secondary">{item.clase_palet}</Badge>
+                {item.clase_palet && <Badge variant="secondary">{item.clase_palet}</Badge>}
               </div>
               <div className="col-span-2">
                 <p className="text-gray-500">{translations["pallet-measures-label"]}</p>
