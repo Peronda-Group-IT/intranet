@@ -1,13 +1,17 @@
 "use client";
 
 import ImageDisplay from "./image-display";
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import fetchCollectionItems from "@/lib/tifs";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { fetchCollectionItems } from "@/lib/tifs";
 import { SquareSquareIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Button } from "./ui/button";
-
-const CMS_API = process.env.NEXT_PUBLIC_CMS_API
 
 export default function ImagesCard({ route }) {
   const [items, setItems] = useState([]);
@@ -18,7 +22,7 @@ export default function ImagesCard({ route }) {
       const newItems = await fetchCollectionItems(route);
 
       if (!showAll) {
-        const firstFour = newItems?.slice(0, 4)
+        const firstFour = newItems?.slice(0, 4);
         setItems(firstFour);
       } else {
         setItems(newItems);
@@ -37,21 +41,31 @@ export default function ImagesCard({ route }) {
         </CardTitle>
       </CardHeader>
       <CardContent>
-        {items.length > 0 ? 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {items.map((name) => (
-            <ImageDisplay
-              key={name}
-              src={`${CMS_API}/render-png?path=${route}/${name}`}
-              alt={name}
-              className={"mx-auto"}
-            />
-          ))}
-        </div>
-        : <p>No hay elementos</p>}
+        {items?.length > 0 ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            {items.map((name) => (
+              <ImageDisplay
+                key={name}
+                src={`${route}/${name}`}
+                alt={name}
+                className={"mx-auto"}
+              />
+            ))}
+          </div>
+        ) : (
+          <p>No hay elementos</p>
+        )}
       </CardContent>
       <CardFooter>
-        <Button variant="secondary" onClick={() => setShowAll(!showAll)} className={`mx-auto cursor-pointer ${items.length === 0 || showAll ? 'hidden' : ''}`}>Load All</Button>
+        <Button
+          variant="secondary"
+          onClick={() => setShowAll(!showAll)}
+          className={`mx-auto cursor-pointer ${
+            items?.length === 0 || showAll ? "hidden" : ""
+          }`}
+        >
+          Load All
+        </Button>
       </CardFooter>
     </Card>
   );
