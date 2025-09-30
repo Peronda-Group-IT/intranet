@@ -324,11 +324,7 @@ export default async function StockDetailPage({ params }) {
         </Card>
       </div>
 
-      <ImagesCard
-        route={`/RAIZ/${item.marca_comercial || "PERONDA"}/DESPIECES/${
-          item.nombre_serie
-        }`}
-      />
+ 
     </div>
   );
 }

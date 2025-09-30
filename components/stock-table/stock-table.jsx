@@ -19,6 +19,7 @@ export default async function StockTable({ id, search, page, pageSize, totalPage
   return (
     <>
       <section className={"bg-background rounded-md border"}>
+        {items.length > 0 ?<> 
         <Table>
           <TableHeader>
             <TableRow className={"bg-muted text-muted-foreground font-semibold hover:bg-muted"}>
@@ -43,9 +44,12 @@ export default async function StockTable({ id, search, page, pageSize, totalPage
             ))}
           </TableBody>
         </Table>
+        
         <div className="py-2 border-t">
           <TablePagination currentPage={page} totalPages={totalPages} />
         </div>
+        </>
+        : <div className="p-4 flex"><p className="mx-auto">{translations["no-items"]}</p></div>}
       </section>
     </>
   );

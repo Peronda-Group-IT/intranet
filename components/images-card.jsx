@@ -13,7 +13,7 @@ import { SquareSquareIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Button } from "./ui/button";
 
-export default function ImagesCard({ route }) {
+export default function ImagesCard({ route, className }) {
   const [items, setItems] = useState([]);
   const [showAll, setShowAll] = useState(false);
 
@@ -33,7 +33,7 @@ export default function ImagesCard({ route }) {
   }, [showAll]);
 
   return (
-    <Card className="flex flex-col">
+    <Card className={`flex flex-col ${className}`}>
       <CardHeader>
         <CardTitle className="flex items-center gap-2 text-lg text-gray-700">
           <SquareSquareIcon className="w-5 h-5 text-purple-600" />

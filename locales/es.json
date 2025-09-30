@@ -84,5 +84,7 @@
     "stock-status-high": "Alto",
     "stock-status-medium": "Medio",
     "stock-status-low": "Bajo",
-    "available-meters": "Metros disponibles"
+    "available-meters": "Metros disponibles",
+
+    "no-items": "No hay elementos"
 }
