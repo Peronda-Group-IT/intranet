@@ -51,7 +51,7 @@ export default function ImagesCard({ route, className }) {
             ))}
           </div>
         ) : (
-          <p>No hay elementos</p>
+          <p>{t('no-items')}</p>
         )}
       </CardContent>
       <CardFooter>
