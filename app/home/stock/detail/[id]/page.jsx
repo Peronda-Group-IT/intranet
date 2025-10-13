@@ -3,10 +3,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import BackButton from "@/components/back-button";
 import { loadTranslations } from "@/lib/server-utils";
 import { Badge } from "@/components/ui/badge";
-import ImageDisplay from "@/components/image-display";
 import {
   Info,
-  Warehouse,
   Weight,
   Truck,
   Ruler,
@@ -57,6 +55,9 @@ export default async function StockDetailPage({ params }) {
   const translations = await loadTranslations();
 
   const [empresa, grupo_cliente, codigo_producto] = id.split("-") ?? [];
+
+  // codigo_prodcuto its contained in the las 5 digits of the string
+  const id_producto = codigo_producto.slice(-5)
 
   const newItem = await cmsFetch(
     `/stock_intranet/${empresa}/${grupo_cliente}/${codigo_producto}`
@@ -326,6 +327,7 @@ export default async function StockDetailPage({ params }) {
 
       {<div>
       <ImagesCard
+        id={id_producto}
         route={`${item.marca_comercial || "PERONDA"}/DESPIECES/${
           item.nombre_serie
         }`}

@@ -14,7 +14,7 @@ import { Button } from './ui/button';
 import { getFiles } from '@/lib/files';
 import { useT } from '@/contexts/TranslationContext';
 
-export default function ImagesCard({ route, className }) {
+export default function ImagesCard({ id, route, className }) {
   const [items, setItems] = useState([]);
   const [allImages, setAllImages] = useState([]);
   const [visibleImageCount, setVisibleImageCount] = useState(4);
@@ -24,8 +24,14 @@ export default function ImagesCard({ route, className }) {
     const fetchAllImages = async () => {
       const newRoute = route.replace('1', 'PERONDA');
       const fetchedImages = await getFiles(newRoute);
-      setAllImages(fetchedImages);
-      setItems(fetchedImages?.slice(0, visibleImageCount));
+
+      // assuming `id` is available in the component scope
+      const filtered = fetchedImages.filter((item) =>
+        item.key.includes(`${newRoute}/${id}`)
+      );
+
+      setAllImages(filtered);
+      setItems(filtered.slice(0, visibleImageCount));
     };
 
     fetchAllImages();
@@ -47,7 +53,7 @@ export default function ImagesCard({ route, className }) {
         {items?.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {items.map((item) => (
-              <ImageDisplay image={item} key={item.key}/>
+              <ImageDisplay image={item} key={item.key} />
             ))}
           </div>
         ) : (
