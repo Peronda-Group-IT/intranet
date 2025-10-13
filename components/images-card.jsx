@@ -16,25 +16,24 @@ import { useT } from '@/contexts/TranslationContext';
 
 export default function ImagesCard({ route, className }) {
   const [items, setItems] = useState([]);
-  const [showAll, setShowAll] = useState(false);
+  const [allImages, setAllImages] = useState([]);
+  const [visibleImageCount, setVisibleImageCount] = useState(4);
   const { t } = useT();
 
   useEffect(() => {
-    const fetchItems = async () => {
+    const fetchAllImages = async () => {
       const newRoute = route.replace('1', 'PERONDA');
-
-      const newItems = await getFiles(newRoute);
-
-      if (!showAll) {
-        const firstFour = newItems?.slice(0, 4);
-        setItems(firstFour);
-      } else {
-        setItems(newItems);
-      }
+      const fetchedImages = await getFiles(newRoute);
+      setAllImages(fetchedImages);
+      setItems(fetchedImages?.slice(0, visibleImageCount));
     };
 
-    fetchItems();
-  }, [showAll]);
+    fetchAllImages();
+  }, [route]);
+
+  useEffect(() => {
+    setItems(allImages?.slice(0, visibleImageCount));
+  }, [visibleImageCount, allImages]);
 
   return (
     <Card className={`flex flex-col ${className}`}>
@@ -52,15 +51,15 @@ export default function ImagesCard({ route, className }) {
             ))}
           </div>
         ) : (
-          <p>No hay elementos</p>
+          <p>{t('no-items')}</p>
         )}
       </CardContent>
       <CardFooter>
         <Button
           variant="secondary"
-          onClick={() => setShowAll(!showAll)}
+          onClick={() => setVisibleImageCount((prevCount) => prevCount + 8)}
           className={`mx-auto cursor-pointer ${
-            items?.length === 0 || showAll ? 'hidden' : ''
+            visibleImageCount >= allImages?.length ? 'hidden' : ''
           }`}
         >
           {t('load-all')}
