@@ -1,48 +1,51 @@
-'use client'
+'use client';
 
-import { useEffect, useState } from "react";
-import Image from "next/image";
-import { CircleSlash2, Loader } from "lucide-react";
-import { fetchImageWebP } from "@/lib/tifs";
+import { useEffect, useState } from 'react';
+import Image from 'next/image';
+import { CircleSlash2, Loader } from 'lucide-react';
+import { getPresignedUrl } from '@/lib/files';
 
-
-const ImageDisplay = ({ src, alt = "Product Image", width = 200, height = 40 }) => {
+const ImageDisplay = ({ image, width = 200, height = 80 }) => {
   const [imageSrc, setImageSrc] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    if (!src) {
-      setError(true);
-      setLoading(false);
-      return;
-    }
+    const loadImage = async () => {
+      try {
+        setError(false);
+        setLoading(true);
 
-    fetchImageWebP(src)
-      .then((url) => {
-        if (url) setImageSrc(url);
-        else setError(true);
-      })
-      .catch(() => setError(true))
-      .finally(() => setLoading(false));
-  }, [src]);
+        const presigned = await getPresignedUrl(image.key);
+        setImageSrc(presigned.url);
+      } catch (err) {
+        console.error('Error loading image:', err);
+        setError(true);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadImage();
+  }, [image]);
 
   if (loading) {
     return <Loader className="animate-spin mx-auto my-auto" />;
   }
 
   if (error || !imageSrc) {
-    return <CircleSlash2 className="text-red-500" />;
+    return <CircleSlash2 className="text-red-500 mx-auto my-auto" />;
   }
 
   return (
-    <div className="mx-auto">
-    <Image
-      src={imageSrc}
-      alt={alt}
-      width={width}
-      height={height}
-    />
+    <div className={`relative w-[200px] h-[80px] mx-auto`}>
+      <Image
+        src={imageSrc}
+        alt={image.key}
+        fill
+        style={{ objectFit: 'contain' }} // maintains aspect ratio
+        unoptimized // optional if using presigned URLs
+      />
     </div>
   );
 };

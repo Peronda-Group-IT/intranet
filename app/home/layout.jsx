@@ -1,18 +1,17 @@
-import { SidebarProvider } from "@/components/ui/sidebar"
-import { AppSidebar } from "@/components/app-sidebar"
-import MovileNavbar from "@/components/movile-navbar"
-import { getUserLangCookie } from "@/lib/session";
-import { TranslationProvider } from "@/contexts/TranslationContext";
+import { SidebarProvider } from '@/components/ui/sidebar';
+import { AppSidebar } from '@/components/app-sidebar';
+import MovileNavbar from '@/components/movile-navbar';
+import { getUserLangCookie } from '@/lib/session';
+import { TranslationProvider } from '@/contexts/TranslationContext';
 
 export default async function Layout({ children }) {
-
   const userLang = await getUserLangCookie();
 
   return (
     <SidebarProvider>
-        <TranslationProvider lang={userLang}>
-          <AppSidebar/>
-        </TranslationProvider>
+      <TranslationProvider lang={userLang}>
+        <AppSidebar />
+
         <section className="flex flex-col md:flex-row w-full relative">
           {/* Mobile Header - Sticky with Full Width */}
           <MovileNavbar />
@@ -20,6 +19,7 @@ export default async function Layout({ children }) {
             {children}
           </main>
         </section>
+      </TranslationProvider>
     </SidebarProvider>
-  )
+  );
 }

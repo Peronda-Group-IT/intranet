@@ -324,14 +324,15 @@ export default async function StockDetailPage({ params }) {
         </Card>
       </div>
 
-      {/*
+      {<div>
       <ImagesCard
-        route={`/RAIZ/${item.marca_comercial || "PERONDA"}/DESPIECES/${
+        route={`${item.marca_comercial || "PERONDA"}/DESPIECES/${
           item.nombre_serie
         }`}
-        className="hidden"
+        
       />
-      */}
+      </div>
+      }
     </div>
   );
 }

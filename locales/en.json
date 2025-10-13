@@ -86,5 +86,7 @@
     "stock-status-low": "Low",
     "available-meters": "Available meters",
 
-    "no-items": "There is no items"
+    "no-items": "There is no items",
+    "pieces": "Pieces",
+    "load-all": "Load all"
 }
