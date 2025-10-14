@@ -50,6 +50,12 @@ const StockStatus = ({ stock, translations }) => {
   }
 };
 
+const MARCAS = {
+  "1": "PERONDA",
+  "2": "MUSEUM",
+  "4": "HARMONY"
+}
+
 export default async function StockDetailPage({ params }) {
   const { id } = await params;
   const translations = await loadTranslations();
@@ -328,7 +334,7 @@ export default async function StockDetailPage({ params }) {
       {<div>
       <ImagesCard
         id={id_producto}
-        route={`${item.marca_comercial || "PERONDA"}/DESPIECES/${
+        route={`${MARCAS[item.marca_comercial]}/DESPIECES/${
           item.nombre_serie
         }`}
         
