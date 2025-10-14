@@ -13,7 +13,7 @@ import {
   Layers,
   Archive,
 } from "lucide-react";
-import ImagesCard from "@/components/images-card";
+import ImagesCard from "@/components/images/images-card";
 
 const StockStatus = ({ stock, translations }) => {
   const stockValue = parseFloat(stock);
