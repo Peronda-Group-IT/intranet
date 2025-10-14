@@ -86,5 +86,7 @@
     "stock-status-low": "Bajo",
     "available-meters": "Metros disponibles",
 
-    "no-items": "No hay elementos"
+    "no-items": "No hay elementos",
+    "pieces": "Despiece",
+    "load-all": "Cargar más"
 }

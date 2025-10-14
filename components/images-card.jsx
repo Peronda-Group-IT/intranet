@@ -1,70 +1,74 @@
-"use client";
+'use client';
 
-import ImageDisplay from "./image-display";
+import ImageDisplay from './image-display';
 import {
   Card,
   CardContent,
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { fetchCollectionItems } from "@/lib/tifs";
-import { SquareSquareIcon } from "lucide-react";
-import { useEffect, useState } from "react";
-import { Button } from "./ui/button";
+} from '@/components/ui/card';
+import { SquareSquareIcon } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { Button } from './ui/button';
+import { getFiles } from '@/lib/files';
+import { useT } from '@/contexts/TranslationContext';
 
-export default function ImagesCard({ route, className }) {
+export default function ImagesCard({ id, route, className }) {
   const [items, setItems] = useState([]);
-  const [showAll, setShowAll] = useState(false);
+  const [allImages, setAllImages] = useState([]);
+  const [visibleImageCount, setVisibleImageCount] = useState(4);
+  const { t } = useT();
 
   useEffect(() => {
-    const fetchItems = async () => {
-      const newItems = await fetchCollectionItems(route);
+    const fetchAllImages = async () => {
+      const newRoute = route.replace('1', 'PERONDA');
+      const fetchedImages = await getFiles(newRoute);
 
-      if (!showAll) {
-        const firstFour = newItems?.slice(0, 4);
-        setItems(firstFour);
-      } else {
-        setItems(newItems);
-      }
+      // assuming `id` is available in the component scope
+      const filtered = fetchedImages.filter((item) =>
+        item.key.includes(`${newRoute}/${id}`)
+      );
+
+      setAllImages(filtered);
+      setItems(filtered.slice(0, visibleImageCount));
     };
 
-    fetchItems();
-  }, [showAll]);
+    fetchAllImages();
+  }, [route]);
+
+  useEffect(() => {
+    setItems(allImages?.slice(0, visibleImageCount));
+  }, [visibleImageCount, allImages]);
 
   return (
     <Card className={`flex flex-col ${className}`}>
       <CardHeader>
         <CardTitle className="flex items-center gap-2 text-lg text-gray-700">
           <SquareSquareIcon className="w-5 h-5 text-purple-600" />
-          Despiece
+          {t('pieces')}
         </CardTitle>
       </CardHeader>
       <CardContent>
         {items?.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {items.map((name) => (
-              <ImageDisplay
-                key={name}
-                src={`${route}/${name}`}
-                alt={name}
-                className={"mx-auto"}
-              />
+            {items.map((item) => (
+              <ImageDisplay image={item} key={item.key} />
             ))}
           </div>
         ) : (
-          <p>No hay elementos</p>
+          <p>{t('no-items')}</p>
         )}
       </CardContent>
       <CardFooter>
         <Button
           variant="secondary"
-          onClick={() => setShowAll(!showAll)}
+          onClick={() => setVisibleImageCount((prevCount) => prevCount + 8)}
           className={`mx-auto cursor-pointer ${
-            items?.length === 0 || showAll ? "hidden" : ""
+            visibleImageCount >= allImages?.length ? 'hidden' : ''
           }`}
         >
-          Load All
+          {t('load-all')}
         </Button>
       </CardFooter>
     </Card>
