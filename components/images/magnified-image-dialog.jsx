@@ -17,7 +17,7 @@ import { CircleX } from 'lucide-react';
 
 const MagnifiedImageDialog = ({ imageSrc, altText, open, onOpenChange }) => {
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(true);
+  const [error, setError] = useState(false);
 
   // Extracts a user-friendly file name from the image path.
   const originalFileName = altText.split('/').pop();
