@@ -10,7 +10,7 @@ import {
 } from '@/components/ui/card';
 import { SquareSquareIcon } from 'lucide-react';
 import { useEffect, useState } from 'react';
-import { Button } from './ui/button';
+import { Button } from '../ui/button';
 import { getFiles } from '@/lib/files';
 import { useT } from '@/contexts/TranslationContext';
 
