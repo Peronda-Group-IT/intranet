@@ -27,7 +27,7 @@ export default async function SettingsPage() {
       </header>
       <section className="flex flex-col gap-4">
         <TranslationProvider lang={lang}>
-          <CompanySettings company={empresa} visible={isCompanySettingsVisible}/>
+          {/*<CompanySettings company={empresa} visible={isCompanySettingsVisible}/>*/}
           <LanguageSettings currentLang={lang} />
         </TranslationProvider>
       </section>
