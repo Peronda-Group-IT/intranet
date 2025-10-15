@@ -16,6 +16,7 @@
     "sidebar_element_inicio": "Home",
     "sidebar_element_groups": "Groups",
     "sidebar_element_settings": "Settings",
+    "sidebar_element_users": "Users",
 
     "groups_title": "Groups",
     "groups_subtitle": "List of all groups in the system.",
