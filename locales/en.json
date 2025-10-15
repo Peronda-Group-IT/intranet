@@ -27,6 +27,10 @@
     "group_id_label": "Group ID",
     "group_name_label": "Group Name",
     "create_button": "Create",
+    "delete_group_title": "Delete Group",
+    "delete_group_description": "Are you sure you want to delete the group",
+    "delete_button": "Delete",
+    "cancel_button": "Cancel",
 
     "log_out": "Log out",
 
