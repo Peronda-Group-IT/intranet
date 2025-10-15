@@ -14,12 +14,23 @@
 
     "sidebar_menu": "Menú",
     "sidebar_element_inicio": "Inicio",
-    "sidebar_element_companies": "Compañias",
-    "sidebar_element_actions": "Acciones",
-    "sidebar_element_trips": "Viajes",
-    "sidebar_element_contacts": "Contactos",
+    "sidebar_element_groups": "Grupos",
     "sidebar_element_settings": "Ajustes",
-    "sidebar_element_calendar": "Calendario",
+
+    "groups_title": "Grupos",
+    "groups_subtitle": "Lista de todos los grupos en el sistema.",
+    "groups_id_header": "ID",
+    "groups_name_header": "Nombre",
+    "create_group_button": "Crear Nuevo Grupo",
+    "create_group_title": "Crear Nuevo Grupo",
+    "create_group_description": "Introduce el ID y el nombre para tu nuevo grupo.",
+    "group_id_label": "ID del Grupo",
+    "group_name_label": "Nombre del Grupo",
+    "create_button": "Crear",
+    "delete_group_title": "Borrar Grupo",
+    "delete_group_description": "¿Estás seguro de que quieres borrar el grupo?",
+    "delete_button": "Borrar",
+    "cancel_button": "Cancelar",
 
     "log_out": "Cerrar sesión",
 
