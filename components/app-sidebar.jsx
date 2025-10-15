@@ -26,6 +26,7 @@ import { useT } from "@/contexts/TranslationContext";
 import { Button } from "./ui/button";
 import { ChevronLeftIcon } from "lucide-react";
 import { ChevronRightIcon } from "lucide-react";
+import { List } from "lucide-react";
 
 const URL = process.env.NEXT_PUBLIC_URL;
 
@@ -40,6 +41,11 @@ export function AppSidebar() {
       title: t("sidebar_element_inicio"),
       url: `${BASE_PATH}/home`,
       icon: Home,
+    },
+     {
+      title: t("sidebar_element_groups"),
+      url: `${BASE_PATH}/home/groups`,
+      icon: List,
     },
     {
       title: t("sidebar_element_settings"),

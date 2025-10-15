@@ -14,12 +14,19 @@
 
     "sidebar_menu": "Menu",
     "sidebar_element_inicio": "Home",
-    "sidebar_element_companies": "Companies",
-    "sidebar_element_actions": "Actions",
-    "sidebar_element_trips": "Trips",
-    "sidebar_element_contacts": "Contacts",
+    "sidebar_element_groups": "Groups",
     "sidebar_element_settings": "Settings",
-    "sidebar_element_calendar": "Calendar",
+
+    "groups_title": "Groups",
+    "groups_subtitle": "List of all groups in the system.",
+    "groups_id_header": "ID",
+    "groups_name_header": "Name",
+    "create_group_button": "Create New Group",
+    "create_group_title": "Create New Group",
+    "create_group_description": "Enter the ID and name for your new group.",
+    "group_id_label": "Group ID",
+    "group_name_label": "Group Name",
+    "create_button": "Create",
 
     "log_out": "Log out",
 
