@@ -19,7 +19,7 @@ import { Separator } from "./ui/separator";
 import Image from "next/image";
 import LogoutButton from "./log-out-button";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { useT } from "@/contexts/TranslationContext";
@@ -27,6 +27,8 @@ import { Button } from "./ui/button";
 import { ChevronLeftIcon } from "lucide-react";
 import { ChevronRightIcon } from "lucide-react";
 import { List } from "lucide-react";
+import { Users } from "lucide-react";
+import { getUserRoleId } from "@/lib/server-utils";
 
 const URL = process.env.NEXT_PUBLIC_URL;
 
@@ -35,17 +37,25 @@ const BASE_PATH = "";
 export function AppSidebar() {
   const { t } = useT();
 
-  // Menu items.
-  const items = [
+  const [items, setItems] = React.useState([]);
+
+  const sidebarItems = [
     {
       title: t("sidebar_element_inicio"),
       url: `${BASE_PATH}/home`,
       icon: Home,
     },
-     {
+    {
       title: t("sidebar_element_groups"),
       url: `${BASE_PATH}/home/groups`,
       icon: List,
+      roles: [1]
+    },
+    {
+      title: t("sidebar_element_users"),
+      url: `${BASE_PATH}/home/users`,
+      icon: Users,
+      roles: [1]
     },
     {
       title: t("sidebar_element_settings"),
@@ -53,6 +63,20 @@ export function AppSidebar() {
       icon: Settings,
     },
   ];
+
+  // Menu items.
+  useEffect(() => {
+    const setSidebarItems = async () => {
+      const role = await getUserRoleId();
+      const filteredItems = sidebarItems.filter(item => {
+        if (!item.roles) return true;
+        return item.roles.includes(Number(role));
+      });
+      setItems(filteredItems);
+    }
+
+    setSidebarItems();
+  }, []);
 
   const { state, toggleSidebar } = useSidebar();
 

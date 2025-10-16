@@ -16,6 +16,7 @@
     "sidebar_element_inicio": "Home",
     "sidebar_element_groups": "Groups",
     "sidebar_element_settings": "Settings",
+    "sidebar_element_users": "Users",
 
     "groups_title": "Groups",
     "groups_subtitle": "List of all groups in the system.",
@@ -27,6 +28,7 @@
     "group_id_label": "Group ID",
     "group_name_label": "Group Name",
     "create_button": "Create",
+    "save_button": "Save",
     "delete_group_title": "Delete Group",
     "delete_group_description": "Are you sure you want to delete the group",
     "delete_button": "Delete",
@@ -99,5 +101,19 @@
 
     "no-items": "There is no items",
     "pieces": "Pieces",
-    "load-all": "Load more"
+    "load-all": "Load more",
+
+    "search": "Search",
+    "insider": "Insider",
+    "external": "External",
+    "users_title": "Users",
+    "users_subtitle": "Management of all users in the system.",
+    "edit_user_title": "Edit User Visibility",
+    "edit_user_description": "Modify the group Visibility of the user.",
+    "visivility_update_error": "Error updating user visibility.",
+    "visivility_update_success": "User visibility updated successfully.",
+    "inactive_user": "Inactive",
+    "activate_button": "Activate User",
+    "user_activate_success": "User activated successfully.",
+    "user_activate_error": "Error activating user."
 }

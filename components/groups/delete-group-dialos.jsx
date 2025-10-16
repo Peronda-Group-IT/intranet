@@ -12,8 +12,7 @@ import {
   DialogFooter,
 } from '@/components/ui/dialog';
 import { useT } from '@/contexts/TranslationContext';
-import { Plus } from 'lucide-react';
-import { createGroupAction, deleteGroupFromDb } from '@/lib/groups_actions';
+import { deleteGroupFromDb } from '@/lib/groups_actions';
 import { Loader } from 'lucide-react';
 import { Trash } from 'lucide-react';
 

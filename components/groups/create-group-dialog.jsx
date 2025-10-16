@@ -64,7 +64,7 @@ export function CreateGroupDialog() {
                         {!state.success && <p className="text-red-400">{state.message}</p>}
                     </div>
                     <DialogFooter>
-                        <Button type="submit">
+                        <Button type="submit" className={"cursor-pointer"}>
                             {isPending ? <Loader className={"animate-spin"}/> : t("create_button") || "Create"}
                         </Button>
                     </DialogFooter>
