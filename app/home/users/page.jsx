@@ -32,26 +32,47 @@ export default async function UsersPage({ searchParams }) {
           {users.length > 0 ? (
             <ul className="divide-y divide-gray-200">
               {users.map((user, index) => (
-                <EditUserDialog key={index} user={user} groups={groups}> 
-                  <li key={index} className="py-4 cursor-pointer hover:bg-gray-50 px-2">
+                <EditUserDialog key={index} user={user} groups={groups}>
+                  <li
+                    key={index}
+                    className="py-4 cursor-pointer hover:bg-gray-50 px-2"
+                  >
                     <div className="flex items-center justify-between">
                       <div>
                         <div className="flex w-full justify-between">
                           <p className="text-sm font-medium text-gray-900">
                             {user.username}
                           </p>
-                          <Badge
-                            className={`${
-                              user.type === 'external'
-                                ? 'bg-blue-100 text-blue-800'
-                                : 'bg-green-100 text-green-800'
-                            } block md:hidden`}
-                          >
-                            {translations[user.type]}
-                          </Badge>
+                          <div className='flex'>
+                        {user.active === 'N' && (
+                        <Badge
+                          className={`bg-red-100 text-red-800 block md:hidden mr-2`}
+                        >
+                          {translations['inactive_user']}
+                        </Badge>
+                      )}
+                      <Badge
+                        className={`${
+                          user.type === 'external'
+                            ? 'bg-blue-100 text-blue-800'
+                            : 'bg-green-100 text-green-800'
+                        } bock md:hidden`}
+                      >
+                        {translations[user.type]}
+                      </Badge>
+                      
+                      </div>
                         </div>
                         <p className="text-sm text-gray-500">{user.email}</p>
                       </div>
+                      <div className='flex'>
+                        {user.active === 'N' && (
+                        <Badge
+                          className={`bg-red-100 text-red-800 hidden md:block mr-2`}
+                        >
+                          {translations['inactive_user']}
+                        </Badge>
+                      )}
                       <Badge
                         className={`${
                           user.type === 'external'
@@ -61,6 +82,8 @@ export default async function UsersPage({ searchParams }) {
                       >
                         {translations[user.type]}
                       </Badge>
+                      
+                      </div>
                     </div>
                   </li>
                 </EditUserDialog>

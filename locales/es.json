@@ -111,5 +111,6 @@
     "edit_user_title": "Editar Visibilidad del Usuario",
     "edit_user_description": "Modificar la Visibilidad de grupos del usuario.",
     "visivility_update_error": "Error al actualizar la visibilidad del usuario.",
-    "visivility_update_success": "Visibilidad del usuario actualizada con éxito."
+    "visivility_update_success": "Visibilidad del usuario actualizada con éxito.",
+    "inactive_user": "Inactivo"
 }
