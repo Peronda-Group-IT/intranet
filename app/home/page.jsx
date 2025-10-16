@@ -5,17 +5,12 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { loadTranslations } from "@/lib/server-utils";
+import { loadGroupsFromDb } from "@/lib/groups_actions";
 
 const HomePage = async () => {
-  const stockCategories = [
-    { name: "Peronda", route: "/home/stock/99" },
-    { name: "Discontinuados", route: "/home/stock/97" },
-    { name: "Comerciales", route: "/home/stock/96" },
-    { name: "Harmony", route: "/home/stock/94" },
-  ];
+  const stockCategories = await loadGroupsFromDb();
 
   const translations = await loadTranslations();
 
@@ -26,8 +21,8 @@ const HomePage = async () => {
           {translations["stock-categories"]}
         </h2>
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-          {stockCategories.map((category) => (
-            <Link href={category.route} key={category.name}>
+          {stockCategories.length > 0 ? (stockCategories.map((category) => (
+            <Link href={`/home/stock/${category.id}`} key={category.id}>
               <Card
                 className="hover:shadow-lg transition-shadow"
               >
@@ -40,7 +35,18 @@ const HomePage = async () => {
                 <CardContent></CardContent>
               </Card>
             </Link>
-          ))}
+          ))) : (
+            <Card className="col-span-full text-center py-8">
+              <CardHeader>
+                <CardTitle>{translations["no-stock-categories"]}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <CardDescription>
+                  {translations["no-stock-categories-description"]}
+                </CardDescription>
+              </CardContent>
+            </Card>
+          )}
         </div>
       </section>
     </div>

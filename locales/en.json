@@ -14,12 +14,25 @@
 
     "sidebar_menu": "Menu",
     "sidebar_element_inicio": "Home",
-    "sidebar_element_companies": "Companies",
-    "sidebar_element_actions": "Actions",
-    "sidebar_element_trips": "Trips",
-    "sidebar_element_contacts": "Contacts",
+    "sidebar_element_groups": "Groups",
     "sidebar_element_settings": "Settings",
-    "sidebar_element_calendar": "Calendar",
+    "sidebar_element_users": "Users",
+
+    "groups_title": "Groups",
+    "groups_subtitle": "List of all groups in the system.",
+    "groups_id_header": "ID",
+    "groups_name_header": "Name",
+    "create_group_button": "Create New Group",
+    "create_group_title": "Create New Group",
+    "create_group_description": "Enter the ID and name for your new group.",
+    "group_id_label": "Group ID",
+    "group_name_label": "Group Name",
+    "create_button": "Create",
+    "save_button": "Save",
+    "delete_group_title": "Delete Group",
+    "delete_group_description": "Are you sure you want to delete the group",
+    "delete_button": "Delete",
+    "cancel_button": "Cancel",
 
     "log_out": "Log out",
 
@@ -37,6 +50,8 @@
     "stock-tittle": "Avaliable Stock",
     "view-stock-for": "View stock for",
     "stock-categories": "Stock categories",
+    "no-stock-categories": "No Stock Categories Available",
+    "no-stock-categories-description": "It seems there are no stock categories to display at the moment. Please check back later or contact support if you believe this is an error.",
     "go-to-stock": "Go to Stock",
 
     "article-header": "Articles",
@@ -88,5 +103,19 @@
 
     "no-items": "There is no items",
     "pieces": "Pieces",
-    "load-all": "Load more"
+    "load-all": "Load more",
+
+    "search": "Search",
+    "insider": "Insider",
+    "external": "External",
+    "users_title": "Users",
+    "users_subtitle": "Management of all users in the system.",
+    "edit_user_title": "Edit User Visibility",
+    "edit_user_description": "Modify the group Visibility of the user.",
+    "visivility_update_error": "Error updating user visibility.",
+    "visivility_update_success": "User visibility updated successfully.",
+    "inactive_user": "Inactive",
+    "activate_button": "Activate User",
+    "user_activate_success": "User activated successfully.",
+    "user_activate_error": "Error activating user."
 }
