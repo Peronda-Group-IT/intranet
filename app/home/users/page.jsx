@@ -2,7 +2,7 @@ import { SearchBar } from '@/components/searchbar';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
 import { EditUserDialog } from '@/components/users/edit-user-dialog';
-import { loadGroupsFromDb } from '@/lib/groups_actions';
+import { loadAllGroupsFromDb } from '@/lib/groups_actions';
 import { loadTranslations } from '@/lib/server-utils';
 import { loadUsersFromDb } from '@/lib/user-actions';
 
@@ -12,7 +12,7 @@ export default async function UsersPage({ searchParams }) {
   const { search } = (await searchParams) || '';
 
   const users = await loadUsersFromDb(search);
-  const groups = await loadGroupsFromDb();
+  const groups = await loadAllGroupsFromDb();
 
   return (
     <section className="flex flex-col items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8 max-w-5xl mx-auto h-full">
