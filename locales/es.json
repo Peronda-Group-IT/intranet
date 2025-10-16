@@ -28,6 +28,7 @@
     "group_id_label": "ID del Grupo",
     "group_name_label": "Nombre del Grupo",
     "create_button": "Crear",
+    "save_button": "Guardar",
     "delete_group_title": "Borrar Grupo",
     "delete_group_description": "¿Estás seguro de que quieres borrar el grupo?",
     "delete_button": "Borrar",
@@ -100,5 +101,15 @@
 
     "no-items": "No hay elementos",
     "pieces": "Despiece",
-    "load-all": "Cargar más"
+    "load-all": "Cargar más",
+
+    "search": "Buscar",
+    "insider": "Interno",
+    "external": "Externo",
+    "users_title": "Usuarios",
+    "users_subtitle": "Gestión de los usuarios en el sistema.",
+    "edit_user_title": "Editar Visibilidad del Usuario",
+    "edit_user_description": "Modificar la Visibilidad de grupos del usuario.",
+    "visivility_update_error": "Error al actualizar la visibilidad del usuario.",
+    "visivility_update_success": "Visibilidad del usuario actualizada con éxito."
 }
