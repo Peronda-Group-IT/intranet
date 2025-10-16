@@ -17,7 +17,7 @@ import { useT } from '@/contexts/TranslationContext';
 import { Separator } from '../ui/separator';
 import { Checkbox } from '../ui/checkbox';
 import { Loader } from 'lucide-react';
-import { upadteUserVisibilityInDb } from '@/lib/user-actions';
+import { setExternalUserActive, upadteUserVisibilityInDb } from '@/lib/user-actions';
 
 export function EditUserDialog({ children, user, groups }) {
   const { t } = useT();
@@ -27,6 +27,7 @@ export function EditUserDialog({ children, user, groups }) {
     user.visibility ? JSON.parse(user.visibility) : []
   );
   const [isPending, setIsPending] = useState(false);
+  const [activationPending, setActivationPending] = useState(false);
   const [state, setState] = useState(null);
 
   const handleCheckboxChange = (groupId, isChecked) => {
@@ -45,6 +46,14 @@ export function EditUserDialog({ children, user, groups }) {
     const newState = await upadteUserVisibilityInDb(user.username, visibility);
     setState(newState);
     setIsPending(false);
+  }
+
+  const handleActivate = async () => {
+    // Call the action to activate the user in the database
+    setActivationPending(true)
+    const newState = await setExternalUserActive(user.username);
+    setState(newState);
+    setActivationPending(false);
   }
 
   return (
@@ -89,11 +98,20 @@ export function EditUserDialog({ children, user, groups }) {
         </div>
         {state && <p className={`text-sm ${state?.success ? "text-green-400" : "text-red-400"} mt-2`}>{t(state.message)}</p>}
         <DialogFooter>
-          <Button type="submit" className={'cursor-pointer'} onClick={handleSave} disabled={isPending}>
+          {user.active === 'N' && 
+          <Button type="submit" className={'cursor-pointer bg-red-500 hover:bg-red-400'} onClick={handleActivate} disabled={activationPending}>
+            {activationPending ? (
+              <Loader className={'animate-spin'} />
+            ) : (
+              t('activate_button') || 'Activate'
+            )}
+          </Button>
+  }
+          <Button type="submit" className={'cursor-pointer'} onClick={handleSave} disabled={isPending || user.active === 'N'}>
             {isPending ? (
               <Loader className={'animate-spin'} />
             ) : (
-              t('save_button') || 'Create'
+              t('save_button') || 'Save'
             )}
           </Button>
         </DialogFooter>

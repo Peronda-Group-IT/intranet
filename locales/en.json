@@ -112,5 +112,8 @@
     "edit_user_description": "Modify the group Visibility of the user.",
     "visivility_update_error": "Error updating user visibility.",
     "visivility_update_success": "User visibility updated successfully.",
-    "inactive_user": "Inactive"
+    "inactive_user": "Inactive",
+    "activate_button": "Activate User",
+    "user_activate_success": "User activated successfully.",
+    "user_activate_error": "Error activating user."
 }
