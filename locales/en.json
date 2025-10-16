@@ -50,6 +50,8 @@
     "stock-tittle": "Avaliable Stock",
     "view-stock-for": "View stock for",
     "stock-categories": "Stock categories",
+    "no-stock-categories": "No Stock Categories Available",
+    "no-stock-categories-description": "It seems there are no stock categories to display at the moment. Please check back later or contact support if you believe this is an error.",
     "go-to-stock": "Go to Stock",
 
     "article-header": "Articles",

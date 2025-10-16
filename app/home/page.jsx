@@ -21,7 +21,7 @@ const HomePage = async () => {
           {translations["stock-categories"]}
         </h2>
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-          {stockCategories.map((category) => (
+          {stockCategories.length > 0 ? (stockCategories.map((category) => (
             <Link href={`/home/stock/${category.id}`} key={category.id}>
               <Card
                 className="hover:shadow-lg transition-shadow"
@@ -35,7 +35,18 @@ const HomePage = async () => {
                 <CardContent></CardContent>
               </Card>
             </Link>
-          ))}
+          ))) : (
+            <Card className="col-span-full text-center py-8">
+              <CardHeader>
+                <CardTitle>{translations["no-stock-categories"]}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <CardDescription>
+                  {translations["no-stock-categories-description"]}
+                </CardDescription>
+              </CardContent>
+            </Card>
+          )}
         </div>
       </section>
     </div>

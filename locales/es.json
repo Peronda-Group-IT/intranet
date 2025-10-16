@@ -50,6 +50,8 @@
     "stock-tittle": "Stock Disponible",
     "view-stock-for": "Ver stock de",
     "stock-categories": "Categorias de stock",
+    "no-stock-categories": "No hay categorías de stock disponibles",
+    "no-stock-categories-description": "Parece que no hay categorías de stock para mostrar en este momento. Por favor, inténtalo de nuevo más tarde o contacta con soporte si crees que esto es un error.",
     "go-to-stock": "Ver stock",
 
     "article-header": "Artículos",
