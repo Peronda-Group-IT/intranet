@@ -11,8 +11,8 @@ export default function StockTableRow({ item }) {
 
   return (
     <TableRow
-      key={item.empresa + item.codigo_articulo}
-      onClick={() => router.push(`/home/stock/detail/${item.empresa}-${item.grupo_cliente}-${item.codigo_articulo}`)}
+      key={item.empresa.trim() + item.codigo_articulo.trim()}
+      onClick={() => router.push(`/home/stock/detail/${item.empresa.trim()}-${item.grupo_cliente.trim()}-${item.codigo_articulo.trim()}`)}
       className={"cursor-pointer hover:bg-muted transition-colors duration-200"}
     >
       <TableCell className="text-blue-600 font-semibold">{item.codigo_articulo}</TableCell>
@@ -20,7 +20,7 @@ export default function StockTableRow({ item }) {
       <TableCell><Badge variant="secondary">{item.nombre_familia}</Badge></TableCell>
       <TableCell>{item.nombre_formato}</TableCell>
       <TableCell>{item.nombre_articulo}</TableCell>
-      <TableCell>{item.grupo_tarifa && <Badge variant="outline">{item.grupo_tarifa}</Badge>}</TableCell>
+      <TableCell>{item.grupo_tarifa.trim() && <Badge variant="outline">{item.grupo_tarifa.trim()}</Badge>}</TableCell>
       <TableCell><Badge variant="secondary" className={'bg-blue-200 text-blue-800'}>{item.nombre_calidad}</Badge></TableCell>
       <TableCell><Badge variant="secondary" className={'bg-purple-200 text-purple-800'}>{item.tono}</Badge></TableCell>
       <TableCell><Badge variant="secondary" className={'bg-green-200 text-green-800'}>{item.calibre}</Badge></TableCell>

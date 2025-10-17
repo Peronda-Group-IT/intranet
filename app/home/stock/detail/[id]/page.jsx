@@ -334,8 +334,8 @@ export default async function StockDetailPage({ params }) {
       {<div>
       <ImagesCard
         id={id_producto}
-        route={`${MARCAS[item.marca_comercial]}/DESPIECES/${
-          item.nombre_serie
+        route={`${MARCAS[item.marca_comercial.trim()]}/DESPIECES/${
+          item.nombre_serie.trim()
         }`}
         
       />
