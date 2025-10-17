@@ -32,7 +32,7 @@ export default async function UsersPage({ searchParams }) {
           {users.length > 0 ? (
             <ul className="divide-y divide-gray-200">
               {users.map((user, index) => (
-                <EditUserDialog key={index} user={user} groups={groups}>
+                <EditUserDialog key={user.username} user={user} groups={groups}>
                   <li
                     key={index}
                     className="py-4 cursor-pointer hover:bg-gray-50 px-2"
