@@ -40,7 +40,7 @@ export default async function StockTable({ id, search, page, pageSize, totalPage
           </TableHeader>
           <TableBody>
             {items.map((item) => (
-              <StockTableRow key={`${item.empresa}-${item.grupo_cliente}-${item.codigo_articulo}`} item={item} />
+              <StockTableRow key={`${item.empresa.trim()}-${item.grupo_cliente.trim()}-${item.codigo_articulo.trim()}`} item={item} />
             ))}
           </TableBody>
         </Table>
