@@ -117,5 +117,7 @@
     "inactive_user": "Inactivo",
     "activate_button": "Activar Usuario",
     "user_activate_success": "Usuario activado con éxito.",
-    "user_activate_error": "Error al activar el usuario."
+    "user_activate_error": "Error al activar el usuario.",
+
+    "tech-specs": "Fichas técnicas"
 }
