@@ -22,12 +22,12 @@ export default function ImagesCard({ id, route, className }) {
 
   useEffect(() => {
     const fetchAllImages = async () => {
-      const newRoute = route.replace('1', 'PERONDA');
-      const fetchedImages = await getFiles(newRoute);
+      
+      const fetchedImages = await getFiles(route);
 
       // assuming `id` is available in the component scope
       const filtered = fetchedImages.filter((item) =>
-        item.key.includes(`${newRoute}/${id}`)
+        item.key.includes(`${route}/${id}`)
       );
 
       setAllImages(filtered);

@@ -1,8 +1,8 @@
-import { cmsFetch } from "@/lib/utils";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import BackButton from "@/components/back-button";
-import { loadTranslations } from "@/lib/server-utils";
-import { Badge } from "@/components/ui/badge";
+import { cmsFetch, MARCAS } from '@/lib/utils';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import BackButton from '@/components/back-button';
+import { loadTranslations } from '@/lib/server-utils';
+import { Badge } from '@/components/ui/badge';
 import {
   Info,
   Weight,
@@ -12,8 +12,9 @@ import {
   Package,
   Layers,
   Archive,
-} from "lucide-react";
-import ImagesCard from "@/components/images/images-card";
+} from 'lucide-react';
+import ImagesCard from '@/components/images/images-card';
+import TechSpecCard from '@/components/tech-spec/tech-spec';
 
 const StockStatus = ({ stock, translations }) => {
   const stockValue = parseFloat(stock);
@@ -24,7 +25,7 @@ const StockStatus = ({ stock, translations }) => {
         className="bg-green-100 text-green-800 border-green-200"
       >
         <div className="h-2 w-2 bg-green-500 rounded-full mr-2"></div>
-        {translations["stock-status-high"]}
+        {translations['stock-status-high']}
       </Badge>
     );
   } else if (stockValue >= 100 && stockValue <= 500) {
@@ -34,7 +35,7 @@ const StockStatus = ({ stock, translations }) => {
         className="bg-yellow-100 text-yellow-800 border-yellow-200"
       >
         <div className="h-2 w-2 bg-yellow-500 rounded-full mr-2"></div>
-        {translations["stock-status-medium"]}
+        {translations['stock-status-medium']}
       </Badge>
     );
   } else {
@@ -44,26 +45,20 @@ const StockStatus = ({ stock, translations }) => {
         className="bg-red-100 text-red-800 border-red-200"
       >
         <div className="h-2 w-2 bg-red-500 rounded-full mr-2"></div>
-        {translations["stock-status-low"]}
+        {translations['stock-status-low']}
       </Badge>
     );
   }
 };
 
-const MARCAS = {
-  "1": "PERONDA",
-  "2": "MUSEUM",
-  "4": "HARMONY"
-}
-
 export default async function StockDetailPage({ params }) {
   const { id } = await params;
   const translations = await loadTranslations();
 
-  const [empresa, grupo_cliente, codigo_producto] = id.split("-") ?? [];
+  const [empresa, grupo_cliente, codigo_producto] = id.split('-') ?? [];
 
   // codigo_prodcuto its contained in the las 5 digits of the string
-  const id_producto = codigo_producto.slice(-5)
+  const id_producto = codigo_producto.slice(-5);
 
   const newItem = await cmsFetch(
     `/stock_intranet/${empresa}/${grupo_cliente}/${codigo_producto}`
@@ -74,7 +69,7 @@ export default async function StockDetailPage({ params }) {
   if (!item) {
     return (
       <h1 className="text-2xl font-bold">
-        {translations["no-item-found"]}: {id}
+        {translations['no-item-found']}: {id}
       </h1>
     );
   }
@@ -87,12 +82,12 @@ export default async function StockDetailPage({ params }) {
             {item.nombre_articulo}
           </h1>
           <p className="text-gray-500">
-            {translations["product-details-title"]}
+            {translations['product-details-title']}
           </p>
         </div>
         <div className="flex items-center gap-2">
           <span className="text-sm text-gray-600">
-            {translations["stock-label"]}:
+            {translations['stock-label']}:
           </span>
           <StockStatus stock={item.existencias} translations={translations} />
         </div>
@@ -106,23 +101,23 @@ export default async function StockDetailPage({ params }) {
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-lg text-gray-700">
               <Info className="w-5 h-5 text-blue-500" />
-              {translations["general-information-title"]}
+              {translations['general-information-title']}
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-6">
             <div className="grid grid-cols-2 gap-x-6 gap-y-4 text-sm">
               <div>
-                <p className="text-gray-500">{translations["series-label"]}</p>
+                <p className="text-gray-500">{translations['series-label']}</p>
                 <p className="font-medium text-gray-800">{item.nombre_serie}</p>
               </div>
               <div>
-                <p className="text-gray-500">{translations["family-label"]}</p>
+                <p className="text-gray-500">{translations['family-label']}</p>
                 {item.nombre_familia && (
                   <Badge variant="secondary">{item.nombre_familia}</Badge>
                 )}
               </div>
               <div>
-                <p className="text-gray-500">{translations["format-label"]}</p>
+                <p className="text-gray-500">{translations['format-label']}</p>
                 <p className="font-medium text-gray-800 flex items-center gap-2">
                   <Ruler className="w-4 h-4 text-gray-400" />
                   {item.nombre_formato}
@@ -130,7 +125,7 @@ export default async function StockDetailPage({ params }) {
               </div>
               <div>
                 <p className="text-gray-500">
-                  {translations["tariff-group-label"]}
+                  {translations['tariff-group-label']}
                 </p>
                 {item.grupo_tarifa && (
                   <Badge variant="outline">{item.grupo_tarifa}</Badge>
@@ -143,26 +138,26 @@ export default async function StockDetailPage({ params }) {
                   {item.nombre_calidad}
                 </div>
                 <p className="mt-2 text-sm text-gray-600">
-                  {translations["quality-label"]}
+                  {translations['quality-label']}
                 </p>
               </div>
-              {item.mostrar_tono === "S" && (
+              {item.mostrar_tono === 'S' && (
                 <div className="text-center">
                   <div className="w-16 h-16 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center text-xl font-bold mx-auto">
                     {item.tono}
                   </div>
                   <p className="mt-2 text-sm text-gray-600">
-                    {translations["tone-label"]}
+                    {translations['tone-label']}
                   </p>
                 </div>
               )}
-              {item.mostrar_calibre === "S" && (
+              {item.mostrar_calibre === 'S' && (
                 <div className="text-center">
                   <div className="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-xl font-bold mx-auto">
                     {item.calibre}
                   </div>
                   <p className="mt-2 text-sm text-gray-600">
-                    {translations["caliber-label"]}
+                    {translations['caliber-label']}
                   </p>
                 </div>
               )}
@@ -175,7 +170,7 @@ export default async function StockDetailPage({ params }) {
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-lg text-gray-700">
               <Package className="w-5 h-5 text-green-600" />
-              {translations["stock-details-title"]}
+              {translations['stock-details-title']}
             </CardTitle>
           </CardHeader>
           <CardContent className="text-center">
@@ -184,7 +179,7 @@ export default async function StockDetailPage({ params }) {
                 {item.existencias}
               </p>
               <p className="text-gray-500 mt-1">
-                {translations["available-meters"]}
+                {translations['available-meters']}
               </p>
               <div className="inline-block mt-3">
                 <StockStatus
@@ -199,7 +194,7 @@ export default async function StockDetailPage({ params }) {
                   {item.metros_caja}
                 </p>
                 <p className="text-sm text-gray-500">
-                  {translations["meters-box-label"]}
+                  {translations['meters-box-label']}
                 </p>
               </div>
               <div className="border rounded-lg p-4">
@@ -207,7 +202,7 @@ export default async function StockDetailPage({ params }) {
                   {item.piezas_caja}
                 </p>
                 <p className="text-sm text-gray-500">
-                  {translations["pieces-box-label"]}
+                  {translations['pieces-box-label']}
                 </p>
               </div>
             </div>
@@ -219,7 +214,7 @@ export default async function StockDetailPage({ params }) {
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-lg text-gray-700">
               <Weight className="w-5 h-5 text-orange-500" />
-              {translations["weight-information-title"]}
+              {translations['weight-information-title']}
             </CardTitle>
           </CardHeader>
           <CardContent className="grid grid-cols-2 gap-6 text-center h-full items-center">
@@ -231,7 +226,7 @@ export default async function StockDetailPage({ params }) {
                 {item.peso_pieza} kg
               </p>
               <p className="text-sm text-gray-500">
-                {translations["weight-piece-label"]}
+                {translations['weight-piece-label']}
               </p>
             </div>
             <div>
@@ -242,7 +237,7 @@ export default async function StockDetailPage({ params }) {
                 {item.peso_caja} kg
               </p>
               <p className="text-sm text-gray-500">
-                {translations["weight-box-label"]}
+                {translations['weight-box-label']}
               </p>
             </div>
           </CardContent>
@@ -253,14 +248,14 @@ export default async function StockDetailPage({ params }) {
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-lg text-gray-700">
               <Truck className="w-5 h-5 text-indigo-600" />
-              {translations["pallet-information-title"]}
+              {translations['pallet-information-title']}
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-6">
             <div className="grid grid-cols-2 gap-x-6 gap-y-4 text-sm">
               <div>
                 <p className="text-gray-500">
-                  {translations["pallet-name-label"]}
+                  {translations['pallet-name-label']}
                 </p>
                 <p className="font-medium text-gray-800">
                   {item.nombre_pallet}
@@ -268,7 +263,7 @@ export default async function StockDetailPage({ params }) {
               </div>
               <div>
                 <p className="text-gray-500">
-                  {translations["pallet-class-label"]}
+                  {translations['pallet-class-label']}
                 </p>
                 {item.clase_palet && (
                   <Badge variant="secondary">{item.clase_palet}</Badge>
@@ -276,7 +271,7 @@ export default async function StockDetailPage({ params }) {
               </div>
               <div className="col-span-2">
                 <p className="text-gray-500">
-                  {translations["pallet-measures-label"]}
+                  {translations['pallet-measures-label']}
                 </p>
                 <p className="font-medium text-gray-800 flex items-center gap-2">
                   <Ruler className="w-4 h-4 text-gray-400" />
@@ -293,7 +288,7 @@ export default async function StockDetailPage({ params }) {
                   {item.cajas_palet}
                 </p>
                 <p className="text-sm text-gray-500">
-                  {translations["boxes-pallet-label"]}
+                  {translations['boxes-pallet-label']}
                 </p>
               </div>
               <div className="bg-indigo-50 rounded-lg p-4 text-center">
@@ -305,14 +300,14 @@ export default async function StockDetailPage({ params }) {
                   {item.planos_palet}
                 </p>
                 <p className="text-sm text-gray-500">
-                  {translations["levels-pallet-label"]}
+                  {translations['levels-pallet-label']}
                 </p>
               </div>
             </div>
             <div className="grid grid-cols-2 gap-x-6 text-sm">
               <div>
                 <p className="text-gray-500">
-                  {translations["boxes-level-label"]}
+                  {translations['boxes-level-label']}
                 </p>
                 <p className="font-medium text-gray-800 text-lg">
                   {item.cajas_planos}
@@ -320,7 +315,7 @@ export default async function StockDetailPage({ params }) {
               </div>
               <div>
                 <p className="text-gray-500">
-                  {translations["pallet-weight-label"]}
+                  {translations['pallet-weight-label']}
                 </p>
                 <p className="font-medium text-gray-800 text-lg">
                   {item.peso_palet} kg
@@ -331,16 +326,19 @@ export default async function StockDetailPage({ params }) {
         </Card>
       </div>
 
-      {<div>
+      <TechSpecCard
+        id={id_producto}
+        route={`${
+          MARCAS[item.marca_comercial.trim()]
+        }/FICHAS_TECNICAS/${item.nombre_serie.trim()}`}
+      />
+
       <ImagesCard
         id={id_producto}
-        route={`${MARCAS[item.marca_comercial.trim()]}/DESPIECES/${
-          item.nombre_serie.trim()
-        }`}
-        
+        route={`${
+          MARCAS[item.marca_comercial.trim()]
+        }/DESPIECES/${item.nombre_serie.trim()}`}
       />
-      </div>
-      }
     </div>
   );
 }
