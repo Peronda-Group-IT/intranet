@@ -11,7 +11,11 @@ export default async function StockPage({ params, searchParams }) {
   const pageSize = 20; // Define the number of items per page
   const actualPage = page ? parseInt(page, 10) : 1;
 
-  const { count } = allItems[0];
+  let count = 0;
+    
+  if (allItems && allItems.length > 0){
+    count = allItems[0].count;
+  }
 
   const totalPages = Math.ceil(count / pageSize);
 
