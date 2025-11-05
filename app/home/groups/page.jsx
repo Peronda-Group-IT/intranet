@@ -1,4 +1,4 @@
-import { loadGroupsFromDb } from '@/lib/groups_actions';
+import { loadAllGroupsFromDb } from '@/lib/groups_actions';
 import { loadTranslations } from '@/lib/server-utils';
 import {
   Table,
@@ -19,7 +19,7 @@ import { CreateGroupDialog } from '@/components/groups/create-group-dialog';
 import { DeleteGroupDialog } from '@/components/groups/delete-group-dialos';
 
 export default async function GroupsPage() {
-  const groups = await loadGroupsFromDb();
+  const groups = await loadAllGroupsFromDb();
   const translations = await loadTranslations();
 
   return (

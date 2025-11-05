@@ -55,7 +55,7 @@ export function AppSidebar() {
       title: t("sidebar_element_users"),
       url: `${BASE_PATH}/home/users`,
       icon: Users,
-      roles: [1]
+      roles: [1, 6]
     },
     {
       title: t("sidebar_element_settings"),
