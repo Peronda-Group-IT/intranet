@@ -1,43 +1,90 @@
 import TablePagination from "@/components/table-pagination";
 import {
   Table,
-  TableBody,
-  TableHead,
-  TableHeader,
-  TableRow,
+  TableBody
 } from "@/components/ui/table";
 import { cmsFetch } from "@/lib/utils";
 import StockTableRow from "./stock-table-row";
 import { loadTranslations } from "@/lib/server-utils";
+import StockTableHeader from "./stock-table-header";
 
 
-export default async function StockTable({ id, search, page, pageSize, totalPages }) {
-  const items = search ? await cmsFetch(`/stock_intranet/search/${search}?grupo_cliente=${id}&page=${page}&pageSize=${pageSize}`) : await cmsFetch(`/stock_intranet/filter?grupo_cliente=${id}&page=${page}&pageSize=${pageSize}`);
+export default async function StockTable({ id, search, page, pageSize, totalPages, orderBy, orderDirection }) {
+
+  const searchQuery = `/stock_intranet/search/${search}?grupo_cliente=${id}&page=${page}&pageSize=${pageSize}`
+  const filterQuery = `/stock_intranet/filter?grupo_cliente=${id}&page=${page}&pageSize=${pageSize}`
+
+  let query = search ? searchQuery : filterQuery
+
+  if (orderBy && orderDirection) {
+    query += `&orderBy=${orderBy}&orderDirection=${orderDirection}`
+  }
+
+  const items = await cmsFetch(query)
 
   const translations = await loadTranslations()
+
+  const headers = [
+    {
+      key:"codigo_articulo",
+      label: translations["article-header"]
+    },
+    {
+      key:"nombre_serie",
+      label: translations["collection-header"]
+    },
+    {
+      key:"nombre_familia",
+      label: translations["family-header"]
+    },
+    {
+      key:"nombre_formato",
+      label: translations["format-header"]
+    },
+    {
+      key:"nombre_articulo",
+      label: translations["description-header"]
+    },
+    {
+      key:"grupo_tarifa",
+      label: translations["rate-group-header"]
+    },
+    {
+      key:"nombre_calidad",
+      label: translations["quality-header"]
+    },
+    {
+      key:"tono",
+      label: translations["tone-header"]
+    },
+    {
+      key:"calibre",
+      label: translations["caliber-header"]
+    },
+    {
+      key:"clase_palet",
+      label: translations["pallet-type-header"]
+    },
+    {
+      key:"nombre_pallet",
+      label: translations["pallet-name-header"]
+    },
+    {
+      key:"existencias",
+      label: translations["available-header"]
+    },
+    {
+      key:"nombre_unidad",
+      label: translations["unit-header"]
+    }
+  ]
 
   return (
     <>
       <section className={"bg-background rounded-md border"}>
         {items.length > 0 ?<> 
         <Table>
-          <TableHeader>
-            <TableRow className={"bg-muted text-muted-foreground font-semibold hover:bg-muted"}>
-              <TableHead>{translations["article-header"]}</TableHead>
-              <TableHead>{translations["collection-header"]}</TableHead>
-              <TableHead>{translations["family-header"]}</TableHead>
-              <TableHead>{translations["format-header"]}</TableHead>
-              <TableHead>{translations["description-header"]}</TableHead>
-              <TableHead>{translations["rate-group-header"]}</TableHead>
-              <TableHead>{translations["quality-header"]}</TableHead>
-              <TableHead>{translations["tone-header"]}</TableHead>
-              <TableHead>{translations["caliber-header"]}</TableHead>
-              <TableHead>{translations["pallet-type-header"]}</TableHead>
-              <TableHead>{translations["pallet-name-header"]}</TableHead>
-              <TableHead>{translations["available-header"]}</TableHead>
-              <TableHead>{translations["unit-header"]}</TableHead>
-            </TableRow>
-          </TableHeader>
+          <StockTableHeader headers={headers} />
           <TableBody>
             {items.map((item) => (
               <StockTableRow key={`${item?.empresa}-${item?.grupo_cliente}-${item?.codigo_articulo}`} item={item} />
