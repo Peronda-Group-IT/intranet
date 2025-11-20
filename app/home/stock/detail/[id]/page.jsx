@@ -127,7 +127,7 @@ export default async function StockDetailPage({ params }) {
                 <p className="text-gray-500">
                   {translations['tariff-group-label']}
                 </p>
-                {item.grupo_tarifa && (
+                {item.grupo_tarifa?.trim() && (
                   <Badge variant="outline">{item.grupo_tarifa}</Badge>
                 )}
               </div>
