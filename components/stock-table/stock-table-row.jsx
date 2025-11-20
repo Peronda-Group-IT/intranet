@@ -11,8 +11,8 @@ export default function StockTableRow({ item }) {
 
   return (
     <TableRow
-      key={item.empresa.trim() + item.codigo_articulo.trim()}
-      onClick={() => router.push(`/home/stock/detail/${item.empresa.trim()}-${item.grupo_cliente.trim()}-${item.codigo_articulo.trim()}`)}
+      key={item.empresa + item.codigo_articulo}
+      onClick={() => router.push(`/home/stock/detail/${item.empresa}-${item.grupo_cliente}-${item.codigo_articulo?.trim()}`)}
       className={"cursor-pointer hover:bg-muted transition-colors duration-200"}
     >
       <TableCell className="text-blue-600 font-semibold">{item.codigo_articulo}</TableCell>

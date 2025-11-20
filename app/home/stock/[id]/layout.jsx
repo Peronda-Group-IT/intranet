@@ -11,7 +11,7 @@ export default async function StockLayout({ params, children }) {
     `/stock_intranet/filter?grupo_cliente=${id}&page=1&pageSize=1`
   );
 
-  const { fecha_cargado } = earliestItem[0];
+  const { fecha_cargado } = earliestItem[0] || '';
 
   return (
     <article>
